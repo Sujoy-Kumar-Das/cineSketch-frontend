@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --container-center: true;
+}
+
+body {
+  font-family: "Satoshi", sans-serif;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a0b2e 100%);
+  min-height: 100vh;
+  color: white;
+}
+.hero-gradient {
+  background: linear-gradient(90deg, #6d28d9 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.cta-button {
+  background: linear-gradient(90deg, #6d28d9 0%, #ec4899 100%);
+  transition: all 0.3s ease;
+}
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(109, 40, 217, 0.4);
+}
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.image-card {
+  transition: transform 0.3s ease;
+}
+.image-card:hover {
+  transform: scale(1.03);
+}
+.pricing-card {
+  transition: all 0.3s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(109, 40, 217, 0.2),
+    0 10px 10px -5px rgba(109, 40, 217, 0.1);
+}
+.testimonial-card {
+  transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+/* For WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 5px;
+  border: 2px solid #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6d28d9;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 #0f0f0f;
+}
