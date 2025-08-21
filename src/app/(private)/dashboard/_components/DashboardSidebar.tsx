@@ -1,26 +1,24 @@
-"use client";
 import Logo from "@/_components/shared/logo/Logo";
 import { IUserRoles } from "@/interface/IUser";
 import routeGenerator from "@/utils/route.generator";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaCog } from "react-icons/fa";
+import { auth } from "../../../../../auth";
 import DashboardUserInfo from "./DashboardUserInfo";
 
-export default function DashboardSidebar() {
-  const session = useSession();
+export default async function DashboardSidebar() {
+  const session = await auth();
 
-  const dashboardLinks = routeGenerator(session?.data?.user.role as IUserRoles);
+  const dashboardLinks = routeGenerator(session?.user.role as IUserRoles);
 
-  console.log({ dashboardLinks, user: session.data?.user.role });
   return (
     <>
       {/* Logo */}
-      <div className="p-4">
+      <div className=" px-3 py-2.5 border-b border-zinc-800">
         <Logo />
       </div>
       {/* User Profile */}
-      <div className="p-4 border-b border-zinc-800">
+      <div className="px-3 py-2.5 border-b border-zinc-800">
         <DashboardUserInfo />
       </div>
       {/* Main Navigation */}

@@ -15,10 +15,12 @@ type ImageRatioKey = keyof typeof imageRatios;
 export default function ImagePromptAndResultGrid() {
   const [result, setResult] = useState<{
     link: string;
+    title: string;
     loading: boolean;
     error?: string;
   }>({
     link: "",
+    title: "",
     loading: false,
     error: undefined,
   });
@@ -44,11 +46,13 @@ export default function ImagePromptAndResultGrid() {
       setResult((prev) => ({
         ...prev,
         link: imageLink,
+        title: res.data.title,
       }));
     } catch {
       setResult((prev) => ({
         ...prev,
         link: "",
+        title: "",
         error: "Something went wrong.Failed to generate image.",
       }));
     } finally {
@@ -64,6 +68,7 @@ export default function ImagePromptAndResultGrid() {
         link={result.link || "https://i.ibb.co/0ybNZfJ1/362224f14b41.jpg"}
         error={result.error}
         loading={result.loading}
+        title={result.title}
       />
     </div>
   );
