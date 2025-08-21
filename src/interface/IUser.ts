@@ -1,3 +1,5 @@
+import { USER_ROLE } from "@/constants/User_Role";
+
 export interface IUserAddress {
   street: string;
   postalCode: number;
@@ -22,3 +24,5 @@ export interface IUser {
   accessToken?: string;
   refreshToken?: string;
 }
+
+export type IUserRoles = (typeof USER_ROLE)[keyof typeof USER_ROLE];

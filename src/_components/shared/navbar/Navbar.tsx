@@ -3,8 +3,6 @@ import Logo from "../logo/Logo";
 import NavMenu from "./NavMenu";
 
 export default async function Navbar() {
-  const session = await auth();
-  console.log({ session });
   return (
     <header>
       <nav className="mx-auto max-w-7xl py-6 px-4 flex items-center  justify-between">

@@ -4,7 +4,6 @@ import {
   login,
   syncLogin,
 } from "@/service/actions/auth.service";
-import parseExpiry from "@/utils/parseExpiry";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -53,6 +52,8 @@ export const {
           name: res.user.name,
           email: res.user.email,
           image: res.user.image,
+          role: res.user.role,
+          plan: res.user.plan,
           accessToken: res.accessToken,
           accessTokenExpiresIn: res.expiresIn,
           refreshToken: res.refreshToken,
@@ -92,6 +93,8 @@ export const {
           user.name = syncLoginRes.user.name;
           user.email = syncLoginRes.user.email;
           user.image = syncLoginRes.user.image || undefined;
+          user.role = syncLoginRes.user.role;
+          user.plan = syncLoginRes.user.plan;
           user.accessToken = syncLoginRes.accessToken;
           user.refreshToken = syncLoginRes.refreshToken;
           user.accessTokenExpiresIn = syncLoginRes.expiresIn;
@@ -102,14 +105,17 @@ export const {
 
       return true;
     },
-    async jwt({ token, user }) {
-      if (user) {
+
+    async jwt({ token, user, account }) {
+      if (user && account) {
         return {
           ...token,
           _id: user._id,
+          plan: user.plan,
+          role: user.role,
           accessToken: user.accessToken,
           refreshToken: user.refreshToken,
-          accessTokenExpires: parseExpiry(user.accessTokenExpiresIn),
+          accessTokenExpires: user.accessTokenExpiresIn,
         };
       }
 
@@ -127,6 +133,10 @@ export const {
         session.user.image = token.picture as string | undefined;
         session.user.name = token.name;
         session.user.email = token.email;
+        session.user.role = token.role;
+        session.user.plan = token.plan;
+        session.user.accessToken = token.accessToken;
+        session.user.accessTokenExpiresIn = token.accessTokenExpires;
       }
 
       return session;

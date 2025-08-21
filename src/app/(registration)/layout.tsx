@@ -8,14 +8,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <main>
-          <Glow />
-          {children}
-          <Toaster position="top-center" />
-        </main>
-      </body>
-    </html>
+    <>
+      <Glow />
+      <main>{children}</main>
+      <Toaster position="top-center" />
+    </>
   );
 }

@@ -1,9 +1,6 @@
 export default function parseExpiry(expiresIn: string): number {
-  if (!expiresIn) {
-    return Date.now();
-  }
+  const match = expiresIn?.match(/^(\d+)([smhd])$/);
 
-  const match = expiresIn.match(/^(\d+)([smhd])$/);
   if (!match) {
     return Date.now();
   }

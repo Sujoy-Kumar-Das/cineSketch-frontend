@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
-import parseExpiry from "@/utils/parseExpiry";
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
 
@@ -74,7 +73,7 @@ export const getAccessToken = async (token: any) => {
     return {
       ...token,
       accessToken: res.data.data.accessToken,
-      accessTokenExpires: parseExpiry(res.data.data.accessTokenExpiresIn),
+      accessTokenExpires: res.data.data.expiresIn,
     };
   } catch (error) {
     console.log(error);
