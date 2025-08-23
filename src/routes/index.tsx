@@ -42,7 +42,7 @@ export const routes: IDashboardRoute[] = [
   },
   {
     title: "Collections",
-    link: "/collections",
+    link: "/dashboard/user/collections",
     icon: <FaFolder className="w-5 text-center" />,
     role: [USER_ROLE.USER],
   },

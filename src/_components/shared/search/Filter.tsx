@@ -1,27 +1,37 @@
 "use client";
+import useSearch from "@/hooks/useSearch";
 import clsx from "clsx";
-import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 interface IOptions {
   label: string;
-  value: string;
+  value: string | undefined;
 }
 
 interface IFilter {
   placeholder?: string;
   className?: string;
+  filterKey: string;
   options: IOptions[];
 }
 
-export default function Filter({ placeholder, options, className }: IFilter) {
-  const [value, setValue] = useState("");
+export default function Filter({
+  placeholder,
+  options,
+  className,
+  filterKey,
+}: IFilter) {
+  const { search, getParam } = useSearch();
+
+  console.log({ options });
+
+  const value = getParam(filterKey);
 
   return (
     <div className="relative w-full">
       <select
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => search({ model: e.target.value })}
         className={clsx(
           "bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 pr-8 text-sm appearance-none w-full",
           className

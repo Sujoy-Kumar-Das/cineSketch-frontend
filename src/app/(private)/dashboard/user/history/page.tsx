@@ -13,13 +13,19 @@ export default function HistoryPage() {
     <DashboardContainer>
       <DashboardHeader title="Generation History">
         <div className=" hidden md:flex items-center gap-4 ">
-          <Filter options={[{ label: "All Models", value: "" }, ...aiModels]} />
+          <Filter
+            filterKey="model"
+            options={[{ label: "All Model", value: "" }, ...aiModels]}
+          />
           <SearchCompo />
         </div>
       </DashboardHeader>
       <Container containerClass="px-6 py-6">
         <div className=" flex md:hidden items-center gap-4 mb-4 ">
-          <Filter options={[{ label: "All Models", value: "" }, ...aiModels]} />
+          <Filter
+            filterKey="model"
+            options={[{ label: "All Model", value: "" }, ...aiModels]}
+          />
           <SearchCompo />
         </div>
         <HistoryFilter />

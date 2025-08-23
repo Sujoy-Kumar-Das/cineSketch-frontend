@@ -4,4 +4,5 @@ export const tags = {
   download: "download",
   favorite: "favorite",
   gallery: "gallery",
+  collection: "collection",
 } as const;

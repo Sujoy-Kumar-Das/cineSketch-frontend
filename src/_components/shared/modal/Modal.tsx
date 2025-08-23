@@ -1,4 +1,5 @@
 "use client";
+import clsx from "clsx";
 import { ReactNode, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -45,7 +46,10 @@ export default function Modal({
       onClick={onClose}
     >
       <div
-        className={`bg-zinc-900 text-white rounded-xl shadow-lg p-4 md:p-6 relative w-full ${sizeClass} ${className}`}
+        className={clsx(
+          `bg-zinc-900 text-white rounded-xl shadow-lg p-4 md:p-6 relative w-full ${sizeClass}`,
+          className
+        )}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
