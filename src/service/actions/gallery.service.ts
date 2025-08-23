@@ -3,10 +3,15 @@
 import { tags } from "@/constants/tags";
 import { fetchApi } from "@/lib/fetch-api/fetchApi";
 
-export const saveToGalleryService = async (payload: {
+export interface IGalleryPayload {
   title: string;
+  description?: string;
   image: string;
-}) => {
+  collection?: string;
+  model: string;
+}
+
+export const saveToGalleryService = async (payload: IGalleryPayload) => {
   return await fetchApi({
     url: "/gallery/save",
     cache: "no-store",

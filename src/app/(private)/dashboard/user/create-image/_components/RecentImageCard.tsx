@@ -19,6 +19,11 @@ export default function RecentImageCard({
   imageName = "",
   imageUrl = "",
 }: RecentImageCardProps) {
+  const saveDataPayload = {
+    title: imageName,
+    image: imageUrl,
+    model,
+  };
   return (
     <div className="image-card group relative rounded-lg overflow-hidden border border-zinc-700/50 aspect-square">
       <Image
@@ -51,10 +56,11 @@ export default function RecentImageCard({
 
             <SaveButton
               className="w-7 h-7 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 rounded-full"
-              image={imageUrl}
-              title=""
+              data={saveDataPayload}
             >
-              <FaSave className="text-xs text-white" />
+              <span>
+                <FaSave className="text-xs text-white" />
+              </span>
             </SaveButton>
           </div>
         </div>
