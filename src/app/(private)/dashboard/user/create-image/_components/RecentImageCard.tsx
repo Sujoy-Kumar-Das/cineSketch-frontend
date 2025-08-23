@@ -1,24 +1,28 @@
 "use client";
 import Image from "next/image";
 import { FaDownload, FaSave } from "react-icons/fa";
-import DownloadButton from "./DownloadButton";
+import DownloadFromHistoryButton from "./DownloadFromHistoryButton";
 import SaveButton from "./SaveButton";
 
 interface RecentImageCardProps {
-  src: string;
+  imageUrl: string;
   alt: string;
+  historyId: string;
+  imageName: string;
   model: string;
 }
 
 export default function RecentImageCard({
   alt,
   model,
-  src,
+  historyId = "",
+  imageName = "",
+  imageUrl = "",
 }: RecentImageCardProps) {
   return (
     <div className="image-card group relative rounded-lg overflow-hidden border border-zinc-700/50 aspect-square">
       <Image
-        src={src}
+        src={imageUrl}
         alt={alt}
         fill
         className={`object-cover transition-opacity duration-500 rounded-lg opacity-100
@@ -31,18 +35,23 @@ export default function RecentImageCard({
           <span className="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded">
             {model}
           </span>
+
           <div className="flex gap-2">
-            <DownloadButton
-              className="w-7 h-7 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 rounded-full"
-              imageUrl={src}
-              imageName={""}
+            <DownloadFromHistoryButton
+              className="w-7 h-7 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 text-white rounded-full"
+              imageUrl={imageUrl}
+              imageName={imageName}
+              historyId={historyId}
+              loadingText={undefined}
             >
-              <FaDownload className="text-xs" />
-            </DownloadButton>
+              <span>
+                <FaDownload className="text-sm text-white" />
+              </span>
+            </DownloadFromHistoryButton>
 
             <SaveButton
               className="w-7 h-7 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 rounded-full"
-              image={src}
+              image={imageUrl}
               title=""
             >
               <FaSave className="text-xs text-white" />

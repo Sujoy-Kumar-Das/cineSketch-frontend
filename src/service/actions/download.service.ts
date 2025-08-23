@@ -3,13 +3,9 @@
 import { tags } from "@/constants/tags";
 import { fetchApi } from "@/lib/fetch-api/fetchApi";
 
-export const downloadImageService = async (payload: {
-  image: string;
-  name: string;
-}) => {
+export const downloadImageFromHistoryService = async (historyId: string) => {
   return await fetchApi({
-    url: "/download",
-    body: payload,
+    url: `/download/history/${historyId}`,
     method: "POST",
     revalidateOnMutate: true,
     tags: [tags.download],

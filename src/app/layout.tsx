@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 import "./globals.css";
+import Provider from "@/providers/Provider";
 
 export const metadata: Metadata = {
   title: "cineSketch",
@@ -16,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={` antialiased`}>
-        <SessionProvider>
+        <Provider>
           {children}
           <Toaster position="top-center" />
-        </SessionProvider>
+        </Provider>
       </body>
     </html>
   );

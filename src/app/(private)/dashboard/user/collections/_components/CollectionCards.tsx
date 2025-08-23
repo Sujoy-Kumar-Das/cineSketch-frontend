@@ -22,8 +22,10 @@ interface ISelectedItem {
 
 export default function CollectionCards({
   collections,
+  isGallery = false,
 }: {
   collections: ICollection[];
+  isGallery?: boolean;
 }) {
   const { onMenuClick } = useMenuContext();
   const [modalType, setModalType] = useState<TModalType>(null);
@@ -94,6 +96,7 @@ export default function CollectionCards({
         <CollectionCard
           key={collection._id}
           collection={collection}
+          isGallery={isGallery}
           onEditModal={() =>
             handleModal("edit", {
               id: collection._id,

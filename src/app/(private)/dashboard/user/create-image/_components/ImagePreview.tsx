@@ -7,6 +7,7 @@ interface ImagePreviewProps {
   title: string;
   error?: string;
   loading?: boolean;
+  historyId: string;
 }
 
 export default function ImagePreview({
@@ -14,6 +15,7 @@ export default function ImagePreview({
   title,
   error,
   loading = false,
+  historyId,
 }: ImagePreviewProps) {
   return (
     <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-xl p-4 md:p-6 h-full flex flex-col">
@@ -24,7 +26,11 @@ export default function ImagePreview({
 
       {/* Action Buttons */}
       {link && !error && !loading && (
-        <ImagePreviewActionButtons link={link} title={title} />
+        <ImagePreviewActionButtons
+          historyId={historyId}
+          link={link}
+          title={title}
+        />
       )}
     </div>
   );

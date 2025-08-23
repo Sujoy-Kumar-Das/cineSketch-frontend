@@ -1,19 +1,22 @@
-import MenuContextProvider from "@/providers/MenuContextProvider";
 import { getAllCollectionByUserService } from "@/service/actions/collection.service";
 import CollectionCards from "./CollectionCards";
 import CreateCollectionCard from "./CreateCollectionCard";
 
-export default async function UserCollectionList() {
+// is galley prop is used for disable and enable the menu options
+// in gallery page, we don't want to show the delete option
+// because we don't want to delete or edit the collection from gallery
+
+export default async function UserCollectionList({
+  isGallery = false,
+}: {
+  isGallery?: boolean;
+}) {
   const data = await getAllCollectionByUserService();
 
   return (
-    <>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        <CreateCollectionCard />
-        <MenuContextProvider>
-          <CollectionCards collections={data.data} />
-        </MenuContextProvider>
-      </div>
-    </>
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      {!isGallery && <CreateCollectionCard />}
+      <CollectionCards collections={data.data} isGallery={isGallery} />
+    </div>
   );
 }

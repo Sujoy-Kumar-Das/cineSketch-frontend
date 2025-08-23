@@ -18,11 +18,13 @@ export default function ImagePromptAndResultGrid() {
     title: string;
     loading: boolean;
     error?: string;
+    _id: string;
   }>({
     link: "",
     title: "",
     loading: false,
     error: undefined,
+    _id: "",
   });
 
   const handleCreateImage = async (data: FieldValues) => {
@@ -47,28 +49,32 @@ export default function ImagePromptAndResultGrid() {
         ...prev,
         link: imageLink,
         title: res.data.title,
+        _id: res.data._id,
       }));
     } catch {
       setResult((prev) => ({
         ...prev,
         link: "",
         title: "",
+        _id: "",
         error: "Something went wrong.Failed to generate image.",
       }));
     } finally {
       setResult((prev) => ({ ...prev, loading: false }));
     }
   };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Prompt Input Section */}
       <PromptForm onCreateImage={handleCreateImage} loading={result.loading} />
       {/* Preview Section */}
       <ImagePreview
-        link={result.link || "https://i.ibb.co/0ybNZfJ1/362224f14b41.jpg"}
+        link={result.link}
         error={result.error}
         loading={result.loading}
         title={result.title}
+        historyId={result._id}
       />
     </div>
   );

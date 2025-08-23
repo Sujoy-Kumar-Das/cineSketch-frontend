@@ -11,7 +11,9 @@ export default async function RecentImagesList() {
         <RecentImageCard
           key={history._id}
           alt={history.title + "Image"}
-          src={history.image}
+          imageUrl={history.image}
+          imageName={history.title}
+          historyId={history._id}
           model={history.model}
         />
       ))}
