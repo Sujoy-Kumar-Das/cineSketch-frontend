@@ -12,3 +12,13 @@ export const downloadImageFromHistoryService = async (historyId: string) => {
     cache: "no-store",
   });
 };
+
+export const downloadImageFromGalleryService = async (galleryId: string) => {
+  return await fetchApi({
+    url: `/download/gallery/${galleryId}`,
+    method: "POST",
+    revalidateOnMutate: true,
+    tags: [tags.download],
+    cache: "no-store",
+  });
+};

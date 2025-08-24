@@ -35,3 +35,29 @@ export const publishToGalleryService = async (payload: {
     tags: [tags.gallery],
   });
 };
+
+export const getAllGalleryImageByUserService = async () => {
+  return await fetchApi({
+    url: "/gallery",
+    cache: "force-cache",
+    method: "GET",
+    tags: [tags.gallery],
+  });
+};
+
+export const editGalleryService = async (
+  id: string,
+  payload: {
+    title: string;
+    description: string;
+  }
+) => {
+  return await fetchApi({
+    url: `/gallery/${id}`,
+    cache: "no-store",
+    body: payload,
+    method: "PATCH",
+    revalidateOnMutate: true,
+    tags: [tags.gallery],
+  });
+};

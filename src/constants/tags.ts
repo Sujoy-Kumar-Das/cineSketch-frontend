@@ -5,4 +5,5 @@ export const tags = {
   favorite: "favorite",
   gallery: "gallery",
   collection: "collection",
+  history: "history",
 } as const;

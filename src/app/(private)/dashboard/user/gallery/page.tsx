@@ -5,7 +5,8 @@ import { Suspense } from "react";
 import DashboardHeader from "../../_components/DashboardHeader";
 import CollectionCardSkeleton from "../collections/_components/CollectionCardSkeleton";
 import UserCollectionList from "../collections/_components/UserCollectionList";
-import GalleryHeader from "./_components/GalleryHeader";
+import GalleryHeader from "./_components/UserGalleryHeader";
+import UserGalleryImageSection from "./_components/UserGalleryImageSection";
 
 export default function GalleryPage() {
   return (
@@ -23,6 +24,8 @@ export default function GalleryPage() {
         <Suspense fallback={<CollectionCardSkeleton />}>
           <UserCollectionList isGallery={true} />
         </Suspense>
+
+        <UserGalleryImageSection />
 
         <Pagination />
       </Container>

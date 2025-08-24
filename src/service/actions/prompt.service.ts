@@ -2,7 +2,6 @@
 "use server";
 
 import { tags } from "@/constants/tags";
-import { fetchApi } from "@/lib/fetch-api/fetchApi";
 import { revalidateTag } from "next/cache";
 import { auth } from "../../../auth";
 
@@ -37,12 +36,4 @@ export const generateImageService = async (data: IGenerateImageData) => {
   }
 
   return res.json();
-};
-
-export const getAllImageHistoryByUserService = async () => {
-  return await fetchApi({
-    url: "/prompt/history",
-    method: "GET",
-    tags: [tags.image, tags.recent_image],
-  });
 };

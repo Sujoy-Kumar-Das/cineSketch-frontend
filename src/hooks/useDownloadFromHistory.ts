@@ -1,12 +1,14 @@
 "use client";
 import { downloadImageFromHistoryService } from "@/service/actions/download.service";
+import { downloadImage } from "@/utils/download-image";
 import { useState } from "react";
 import { toast } from "sonner";
 
 interface UseDownloadFromHistoryProps {
   historyId: string;
   imageUrl: string;
-  imageName?: string;
+  imageName: string;
+  model: string;
 }
 
 export default function useDownloadFromHistory({
@@ -32,23 +34,7 @@ export default function useDownloadFromHistory({
         return;
       }
 
-      // Fetch the image
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        toast.error("Failed to download image. Please try again.");
-        return;
-      }
-
-      // Prepare file download
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = imageName || "downloaded-image.png";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
+      await downloadImage(imageName, imageUrl);
 
       toast.success("Image downloaded successfully!");
     } catch (error) {

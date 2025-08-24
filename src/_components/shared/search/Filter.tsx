@@ -23,15 +23,13 @@ export default function Filter({
 }: IFilter) {
   const { search, getParam } = useSearch();
 
-  console.log({ options });
-
   const value = getParam(filterKey);
 
   return (
     <div className="relative w-full">
       <select
         value={value}
-        onChange={(e) => search({ model: e.target.value })}
+        onChange={(e) => search({ [filterKey]: e.target.value })}
         className={clsx(
           "bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2 pr-8 text-sm appearance-none w-full",
           className

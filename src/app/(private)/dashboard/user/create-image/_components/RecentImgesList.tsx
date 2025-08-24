@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getAllImageHistoryByUserService } from "@/service/actions/prompt.service";
+import { getAllHistoryByUser } from "@/service/actions/history.service";
 import RecentImageCard from "./RecentImageCard";
 
 export default async function RecentImagesList() {
-  const histories: any = await getAllImageHistoryByUserService();
+  const histories: any = await getAllHistoryByUser();
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

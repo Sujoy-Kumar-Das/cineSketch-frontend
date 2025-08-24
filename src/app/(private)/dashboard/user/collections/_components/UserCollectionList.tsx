@@ -14,9 +14,12 @@ export default async function UserCollectionList({
   const data = await getAllCollectionByUserService();
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      {!isGallery && <CreateCollectionCard />}
-      <CollectionCards collections={data.data} isGallery={isGallery} />
+    <div>
+      <h1 className=" text-xl text-white font-normal mb-5">Collections</h1>
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {!isGallery && <CreateCollectionCard />}
+        <CollectionCards collections={data.data} isGallery={isGallery} />
+      </div>
     </div>
   );
 }

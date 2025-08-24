@@ -10,16 +10,24 @@ export default function ImagePreviewActionButtons({
   link,
   title,
   historyId,
+  model,
 }: {
   link: string;
   title: string;
   historyId: string;
+  model: string;
 }) {
   const { loading, handleDownloadImage } = useDownloadFromHistory({
     historyId,
     imageUrl: link,
     imageName: title,
+    model,
   });
+  const saveData = {
+    title,
+    model,
+    image: link,
+  };
   return (
     <div className="mt-4">
       <div className="flex md:flex-row flex-col gap-2 md:gap-3">
@@ -27,7 +35,7 @@ export default function ImagePreviewActionButtons({
           <FaDownload className="text-xs md:text-base" /> Download
         </ActionButton>
 
-        <SaveButton title={title} image={link}>
+        <SaveButton data={saveData}>
           <FaSave /> Save
         </SaveButton>
 

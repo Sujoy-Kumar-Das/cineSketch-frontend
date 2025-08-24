@@ -2,7 +2,7 @@ import SearchCompo from "@/_components/shared/search/SearchCompo";
 import { FaPlus } from "react-icons/fa";
 import CreateCollectionModal from "../../collections/_components/CreateCollectionModal";
 
-export default function GalleryHeader() {
+export default function UserGalleryHeader() {
   return (
     <>
       <CreateCollectionModal>
