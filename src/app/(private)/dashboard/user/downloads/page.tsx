@@ -3,31 +3,12 @@ import DashboardContainer from "@/_components/shared/container/DashboardContaine
 import Pagination from "@/_components/shared/pagination/Pagination";
 import Filter from "@/_components/shared/search/Filter";
 import SearchCompo from "@/_components/shared/search/SearchCompo";
+import { Suspense } from "react";
 import DashboardHeader from "../../_components/DashboardHeader";
 import { aiModels } from "../create-image/_components/prompt.data";
 import DownloadStats from "./_components/DownloadStats";
 import DownloadTable from "./_components/DownloadTable";
-
-const downloads = [
-  {
-    id: "1",
-    image: "https://source.unsplash.com/random/600x600/?fantasy",
-    title: "Fantasy Castle",
-    description: "Majestic fantasy castle in the clouds",
-    model: "SDXL",
-    size: "2048×2048",
-    downloaded: "2 days ago",
-  },
-  {
-    id: "2",
-    image: "https://source.unsplash.com/random/600x600/?cyberpunk",
-    title: "Cyberpunk City",
-    description: "Neon cyberpunk city street at night",
-    model: "DALL·E",
-    size: "1024×1024",
-    downloaded: "1 week ago",
-  },
-];
+import TableSkeleton from "./_components/TableSkeleton";
 
 export default function DownloadPage() {
   return (
@@ -49,8 +30,11 @@ export default function DownloadPage() {
           />
           <SearchCompo />
         </div>
+
         <DownloadStats />
-        <DownloadTable downloads={downloads} />
+        <Suspense fallback={<TableSkeleton />}>
+          <DownloadTable />
+        </Suspense>
         <Pagination />
       </Container>
     </DashboardContainer>

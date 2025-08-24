@@ -22,3 +22,22 @@ export const downloadImageFromGalleryService = async (galleryId: string) => {
     cache: "no-store",
   });
 };
+
+export const getUsersDownloadedImageService = async () => {
+  return await fetchApi({
+    url: `/download`,
+    method: "GET",
+    tags: [tags.download],
+    cache: "force-cache",
+  });
+};
+
+export const deleteUsersDownloadedImageService = async (id: string) => {
+  return await fetchApi({
+    url: `/download/${id}`,
+    method: "DELETE",
+    revalidateOnMutate: true,
+    tags: [tags.download],
+    cache: "no-store",
+  });
+};
