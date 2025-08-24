@@ -1,24 +1,25 @@
 "use client";
 import useMenuContext from "@/hooks/useMenuContext";
+import { IGallery } from "@/interface/gallery.interface";
 import { CiMenuKebab } from "react-icons/ci";
 import EditGalleryModal from "./EditGalleryModal";
+import GalleryDeleteModal from "./GalleryDeleteModal";
+import GalleryPreviewModal from "./GalleryPreviewModal";
 
 export default function GalleryMenu({
-  id,
-  title,
-  description,
+  galleryImage,
 }: {
-  id: string;
-  title: string;
-  description: string;
+  galleryImage: IGallery;
 }) {
   const { openId, onMenuClick } = useMenuContext();
 
-  const open = openId === id;
+  const { _id, title, description } = galleryImage;
+
+  const open = openId === _id;
   return (
     <div className="absolute top-2 right-2">
       <button
-        onClick={(e) => onMenuClick(e, id)}
+        onClick={(e) => onMenuClick(e, _id)}
         className="w-7 h-7 flex items-center justify-center bg-zinc-900/80 rounded-full text-zinc-300 hover:text-white"
         aria-label="Collection options"
       >
@@ -27,13 +28,15 @@ export default function GalleryMenu({
 
       {open && (
         <div className="absolute right-0 mt-2 w-28 bg-zinc-900 border border-zinc-700 rounded-md shadow-lg z-10">
-          <EditGalleryModal id={id} title={title} description={description} />
-          <button
-            className="w-full text-left px-3 py-2 text-sm hover:bg-zinc-800 rounded-md"
-            // onClick={onDeleteModal}
-          >
-            Delete
-          </button>
+          <EditGalleryModal
+            id={_id}
+            title={title}
+            description={description || ""}
+          />
+
+          <GalleryPreviewModal galleryImage={galleryImage} />
+
+          <GalleryDeleteModal galleryId={_id} />
         </div>
       )}
     </div>

@@ -1,22 +1,19 @@
 "use client";
 import ActionButton from "@/_components/ui/ActionButton";
-import {
-  IGalleryPayload,
-  saveToGalleryService,
-} from "@/service/actions/gallery.service";
+import { saveToGalleryService } from "@/service/actions/gallery.service";
 import clsx from "clsx";
 import { ReactNode, useState } from "react";
 import { toast } from "sonner";
 
 interface SaveButtonProps {
-  data: IGalleryPayload;
+  historyId: string;
   children: ReactNode;
   className?: string;
   loadingText?: string;
 }
 
 export default function SaveButton({
-  data,
+  historyId,
   children,
   className,
   loadingText,
@@ -26,7 +23,7 @@ export default function SaveButton({
   const handleSaveImage = async () => {
     try {
       setLoading(true);
-      const res = await saveToGalleryService(data);
+      const res = await saveToGalleryService(historyId);
 
       if (!res.success) {
         toast.error(res.message || "Failed to save image.");

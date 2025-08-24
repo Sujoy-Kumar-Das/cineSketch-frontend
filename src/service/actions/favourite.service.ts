@@ -3,10 +3,9 @@
 import { tags } from "@/constants/tags";
 import { fetchApi } from "@/lib/fetch-api/fetchApi";
 
-export const addToFavoriteService = async (payload: { image: string }) => {
+export const addToFavoriteService = async (galleryId: string) => {
   return await fetchApi({
-    url: "/favorite",
-    body: payload,
+    url: `/favorite/${galleryId}`,
     cache: "no-store",
     method: "POST",
     revalidateOnMutate: true,

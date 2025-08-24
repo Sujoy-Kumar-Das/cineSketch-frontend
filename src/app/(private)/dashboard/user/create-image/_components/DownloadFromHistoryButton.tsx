@@ -1,3 +1,4 @@
+"use client";
 import ActionButton from "@/_components/ui/ActionButton";
 import useDownloadFromHistory from "@/hooks/useDownloadFromHistory";
 import clsx from "clsx";
@@ -10,6 +11,7 @@ interface DownloadFromHistoryButtonProps {
   children: ReactNode;
   className?: string;
   loadingText?: string | undefined;
+  model: string;
 }
 
 export default function DownloadFromHistoryButton({
@@ -19,11 +21,13 @@ export default function DownloadFromHistoryButton({
   children,
   className,
   loadingText,
+  model,
 }: DownloadFromHistoryButtonProps) {
   const { handleDownloadImage, loading } = useDownloadFromHistory({
     historyId,
     imageUrl,
     imageName,
+    model,
   });
 
   return (

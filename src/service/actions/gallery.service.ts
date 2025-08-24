@@ -11,11 +11,10 @@ export interface IGalleryPayload {
   model: string;
 }
 
-export const saveToGalleryService = async (payload: IGalleryPayload) => {
+export const saveToGalleryService = async (historyId: string) => {
   return await fetchApi({
-    url: "/gallery/save",
+    url: `/gallery/save/${historyId}`,
     cache: "no-store",
-    body: payload,
     method: "POST",
     revalidateOnMutate: true,
     tags: [tags.gallery],
@@ -57,6 +56,16 @@ export const editGalleryService = async (
     cache: "no-store",
     body: payload,
     method: "PATCH",
+    revalidateOnMutate: true,
+    tags: [tags.gallery],
+  });
+};
+
+export const deleteGalleryService = async (id: string) => {
+  return await fetchApi({
+    url: `/gallery/${id}`,
+    cache: "no-store",
+    method: "DELETE",
     revalidateOnMutate: true,
     tags: [tags.gallery],
   });

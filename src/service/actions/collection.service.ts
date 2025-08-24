@@ -12,6 +12,20 @@ export const createCollectionService = async (payload: { title: string }) => {
   });
 };
 
+export const addImageToCollectionService = async (
+  imageId: string,
+  payload: { collectionId: string }
+) => {
+  return await fetchApi({
+    url: `/collection/${imageId}`,
+    method: "POST",
+    body: payload,
+    cache: "no-store",
+    revalidateOnMutate: true,
+    tags: [tags.collection, tags.gallery],
+  });
+};
+
 export const getAllCollectionByUserService = async () => {
   return await fetchApi({
     url: "/collection",

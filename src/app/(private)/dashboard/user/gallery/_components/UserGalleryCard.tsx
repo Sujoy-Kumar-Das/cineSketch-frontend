@@ -12,7 +12,7 @@ export default function UserGalleryCard({
 }: {
   galleryImage: IGallery;
 }) {
-  const { image, model, title, createdAt, _id, description } = galleryImage;
+  const { image, model, title, createdAt, _id } = galleryImage;
 
   return (
     <div className="group relative rounded-lg overflow-hidden border border-zinc-700/50 aspect-square">
@@ -56,7 +56,7 @@ export default function UserGalleryCard({
         {countTime(createdAt)}
       </div>
 
-      <GalleryMenu id={_id} title={title} description={description || ""} />
+      <GalleryMenu galleryImage={galleryImage} />
     </div>
   );
 }

@@ -29,6 +29,7 @@ export default function HistoryCard({ history }: { history: IHistory }) {
               imageName={title}
               imageUrl={image}
               historyId={_id}
+              model={model}
               className="w-7 h-7 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 rounded-full"
             >
               <span>
@@ -37,11 +38,7 @@ export default function HistoryCard({ history }: { history: IHistory }) {
             </DownloadFromHistoryButton>
 
             <SaveButton
-              data={{
-                title,
-                model,
-                image,
-              }}
+              historyId={_id}
               className="w-7 h-7 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 rounded-full"
             >
               <span>

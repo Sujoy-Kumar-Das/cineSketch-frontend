@@ -42,10 +42,6 @@ export const fetchApi = async ({
     },
   });
 
-  if (!res.ok) {
-    throw new Error(`API Error: ${res.status}`);
-  }
-
   if (revalidateOnMutate) {
     if (tags.length > 0) tags.forEach((tag) => revalidateTag(tag));
     if (revalidatePaths.length > 0)
